@@ -1,10 +1,8 @@
 package com.rumaruka.lightningcraft.init;
 
-import com.google.common.collect.Lists;
 import com.rumaruka.lightningcraft.LightningCraft;
 import com.rumaruka.lightningcraft.client.render.tesr.TesrInfuser;
 import com.rumaruka.lightningcraft.common.tiles.TileLightningInfuser;
-import com.rumaruka.lightningcraft.common.tiles.TileLightningItemHandler;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 import ru.timeconqueror.timecore.registry.AutoRegistrable;
@@ -26,7 +24,7 @@ public class LCTiles {
         private static void register() {
             REGISTER.registerSingleBound("infuser",
                     TileLightningInfuser::new,
-                    ()->LCBlocks.INFUSER).regCustomRenderer(()-> TesrInfuser::new)
+                    () -> LCBlocks.INFUSER).regCustomRenderer(() -> TesrInfuser::new)
 
             ;
 

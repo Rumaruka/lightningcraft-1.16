@@ -10,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class TileBase extends TileEntity implements ITickableTileEntity {
@@ -53,6 +54,6 @@ public abstract class TileBase extends TileEntity implements ITickableTileEntity
 
     public boolean isUseableByPlayer(PlayerEntity player) {
         TileBase tile = this;
-        return tile.getLevel().getBlockEntity(tile.getBlockPos()) == tile && player.distanceToSqr(tile.getX() + 0.5D, tile.getY() + 0.5D, tile.getZ() + 0.5D) <= 64.0D;
+        return Objects.requireNonNull(tile.getLevel()).getBlockEntity(tile.getBlockPos()) == tile && player.distanceToSqr(tile.getX() + 0.5D, tile.getY() + 0.5D, tile.getZ() + 0.5D) <= 64.0D;
     }
 }
