@@ -62,14 +62,8 @@ public class BaseLightningUpgradable implements Capability.IStorage, ILightningU
 
     @Override
     public ILightningUpgradable call() throws Exception {
-        try
-        {
-            return call();
-        }
-        catch (Exception e)
-        {
-            Throwables.throwIfUnchecked(e);
-            throw new RuntimeException(e);
-        }
+
+            return new BaseLightningUpgradable();
+
     }
 }

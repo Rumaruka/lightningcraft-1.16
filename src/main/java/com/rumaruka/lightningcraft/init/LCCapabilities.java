@@ -19,8 +19,11 @@ public class LCCapabilities {
 
     /** Access to the lightning-upgradable capability */
     @CapabilityInject(ILightningUpgradable.class)
-    public static Capability<ILightningUpgradable> LIGHTNING_UPGRADABLE = promise();
-    
+    public static final Capability<ILightningUpgradable> LIGHTNING_UPGRADABLE = null;
+
+
+
+
 
     /** Lightning-upgradable storage handler */
     public static class CapabilityLightningUpgradable implements Capability.IStorage<ILightningUpgradable> {
@@ -39,9 +42,10 @@ public class LCCapabilities {
         }
     }
 
-    public static void setupCap(){
-        LightningCraft.logger.info("Register LightningUpgradable Capability");
-        CapabilityManager.INSTANCE.register(ILightningUpgradable.class,new CapabilityLightningUpgradable(),new BaseLightningUpgradable());
+    public static void setupCap(){/**TODO: Watch tutorial about Capability*/
+        LightningCraft.logger.info("Don`t Register LightningUpgradable Capability");
+
+//        CapabilityManager.INSTANCE.register(ILightningUpgradable.class,new CapabilityLightningUpgradable(),new BaseLightningUpgradable());
     }
 
 
