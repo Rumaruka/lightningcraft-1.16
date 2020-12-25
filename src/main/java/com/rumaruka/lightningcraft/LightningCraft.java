@@ -1,5 +1,6 @@
 package com.rumaruka.lightningcraft;
 
+import com.rumaruka.lightningcraft.init.LCCapabilities;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import ru.timeconqueror.timecore.api.TimeMod;
@@ -15,6 +16,7 @@ public class LightningCraft implements TimeMod {
     public static final Logger logger = LogManager.getLogger(MODID);
     public static LightningCraft INSTANCE = null;
     public LightningCraft() {
+        LCCapabilities.setupCap();
         logger.info("LightningCraft add in you modpack");
     }
 

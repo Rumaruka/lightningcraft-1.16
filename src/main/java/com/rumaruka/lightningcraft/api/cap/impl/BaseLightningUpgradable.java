@@ -1,5 +1,6 @@
 package com.rumaruka.lightningcraft.api.cap.impl;
 
+import com.google.common.base.Throwables;
 import com.rumaruka.lightningcraft.api.cap.ILightningUpgradable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import org.jetbrains.annotations.Nullable;
 
-public class BaseLightningUpgradable implements Capability.IStorage, ILightningUpgradable, INBTSerializable<CompoundNBT> {
+import java.util.concurrent.Callable;
+
+public class BaseLightningUpgradable implements Capability.IStorage, ILightningUpgradable, INBTSerializable<CompoundNBT>,Callable<ILightningUpgradable> {
     private boolean isUpgraded;
     @Override
     public ActionResultType onLightningUpgrade(ItemStack stack, PlayerEntity player, World world, BlockPos pos, Hand hand, Direction facing, float hitX, float hitY, float hitZ) {
@@ -55,5 +58,18 @@ public class BaseLightningUpgradable implements Capability.IStorage, ILightningU
     @Override
     public void readNBT(Capability capability, Object instance, Direction side, INBT nbt) {
 
+    }
+
+    @Override
+    public ILightningUpgradable call() throws Exception {
+        try
+        {
+            return call();
+        }
+        catch (Exception e)
+        {
+            Throwables.throwIfUnchecked(e);
+            throw new RuntimeException(e);
+        }
     }
 }
