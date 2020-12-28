@@ -3,12 +3,13 @@ package com.rumaruka.lightningcraft.init;
 import com.rumaruka.lightningcraft.LightningCraft;
 import com.rumaruka.lightningcraft.common.item.LCIngot;
 import net.minecraftforge.registries.ObjectHolder;
-import ru.timeconqueror.timecore.api.client.resource.location.TextureLocation;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.ItemRegister;
+import ru.timeconqueror.timecore.api.registry.ItemRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+
 
 import static com.rumaruka.lightningcraft.LightningCraft.tl;
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
+
 
 @ObjectHolder(LightningCraft.MODID)
 public class LCItems {

@@ -3,27 +3,27 @@ package com.rumaruka.lightningcraft.utils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class EnergyStorage implements IEnergyStorage {
+public class CustomEnergyStorage implements IEnergyStorage {
     protected int energy;
     protected int capacity;
     protected int maxReceive;
     protected int maxExtract;
 
-    public EnergyStorage(int capacity) {
+    public CustomEnergyStorage(int capacity) {
         this(capacity, capacity, capacity);
     }
 
-    public EnergyStorage(int capacity, int maxTransfer) {
+    public CustomEnergyStorage(int capacity, int maxTransfer) {
         this(capacity, maxTransfer, maxTransfer);
     }
 
-    public EnergyStorage(int capacity, int maxReceive, int maxExtract) {
+    public CustomEnergyStorage(int capacity, int maxReceive, int maxExtract) {
         this.capacity = capacity;
         this.maxReceive = maxReceive;
         this.maxExtract = maxExtract;
     }
 
-    public EnergyStorage readFromNBT(CompoundNBT nbt) {
+    public CustomEnergyStorage readFromNBT(CompoundNBT nbt) {
         this.energy = nbt.getInt("storedRF");
 
         if (energy > capacity) {
@@ -40,7 +40,7 @@ public class EnergyStorage implements IEnergyStorage {
         return nbt;
     }
 
-    public EnergyStorage setCapacity(int capacity) {
+    public CustomEnergyStorage setCapacity(int capacity) {
         this.capacity = capacity;
 
         if (energy > capacity) {
@@ -49,18 +49,18 @@ public class EnergyStorage implements IEnergyStorage {
         return this;
     }
 
-    public EnergyStorage setMaxTransfer(int maxTransfer) {
+    public CustomEnergyStorage setMaxTransfer(int maxTransfer) {
         setMaxReceive(maxTransfer);
         setMaxExtract(maxTransfer);
         return this;
     }
 
-    public EnergyStorage setMaxReceive(int maxReceive) {
+    public CustomEnergyStorage setMaxReceive(int maxReceive) {
         this.maxReceive = maxReceive;
         return this;
     }
 
-    public EnergyStorage setMaxExtract(int maxExtract) {
+    public CustomEnergyStorage setMaxExtract(int maxExtract) {
         this.maxExtract = maxExtract;
         return this;
     }

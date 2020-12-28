@@ -4,10 +4,10 @@ import com.rumaruka.lightningcraft.LightningCraft;
 import com.rumaruka.lightningcraft.common.tiles.TileLightningInfuser;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.TileEntityRegister;
+import ru.timeconqueror.timecore.api.registry.TileEntityRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
 
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
 
 @ObjectHolder(LightningCraft.MODID)
 public class LCTiles {

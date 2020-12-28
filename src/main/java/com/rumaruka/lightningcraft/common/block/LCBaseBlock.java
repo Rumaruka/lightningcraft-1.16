@@ -3,7 +3,7 @@ package com.rumaruka.lightningcraft.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import ru.timeconqueror.timecore.registry.BlockPropsFactory;
+import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
 
 public class LCBaseBlock extends Block {
 

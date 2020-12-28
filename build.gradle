@@ -114,7 +114,7 @@ dependencies {
 
     compileOnly 'org.jetbrains:annotations:18.0.0'
 
-    implementation(fg.deobf("ru.timeconqueror:TimeCore:1.16.4-3.1.0.2.build72:dev", true))
+    implementation(fg.deobf("ru.timeconqueror:TimeCore:1.16.4-3.1.0.2.build77:dev", true))
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation  "org.jetbrains.kotlin:kotlin-reflect"
     //    implementation group: 'ru.timeconqueror', name: 'TimeCore', version: '1.16.4-3.1.0.2.build48', changing: true

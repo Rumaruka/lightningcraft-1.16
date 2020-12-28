@@ -1,62 +1,113 @@
 package com.rumaruka.lightningcraft.recipes;
 
-import com.rumaruka.lightningcraft.api.util.JointList;
-import com.rumaruka.lightningcraft.init.LCItems;
+import com.google.gson.JsonObject;
+import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class LightningTransformRecipes   {
-    private static LightningTransformRecipes instance = new LightningTransformRecipes();
+import static com.rumaruka.lightningcraft.LightningCraft.rl;
 
 
-    private Map<List<ItemStack>, ItemStack> recipeMaps;
-    public static LightningTransformRecipes instance() {
-        return instance;
+
+public class LightningTransformRecipes implements IRecipe<IInventory> {
+    public static final LCSerializer SERIALIZER = new LCSerializer();
+
+    private final Ingredient input;
+    private final ItemStack output;
+
+    private final ResourceLocation id;
+
+    public LightningTransformRecipes(ResourceLocation id, Ingredient input, ItemStack output, Block block) {
+
+        this.id = id;
+        this.input = input;
+        this.output = output;
+
+
+        // This output is not required, but it can be used to detect when a recipe has been
+        // loaded into the game.
+        System.out.println("Loaded " + this.toString());
     }
 
-
-    public void addDefaultRecipes(){
-        recipeMaps = new HashMap();
-
-
-        addRecipe(new ItemStack(LCItems.INGOT_ELECTRICIUM),
-                new JointList().join(new ItemStack(Items.IRON_INGOT)).join(new ItemStack(Items.GOLD_INGOT)).join(new ItemStack(Items.DIAMOND)));
-    }
-    public void addRecipe(@Nonnull ItemStack output, List<ItemStack> input) {
-        recipeMaps.put(input, output);
+    @Override
+    public boolean matches(IInventory inv, World worldIn) {
+        return this.input.test(inv.getItem(0));
     }
 
-    /** Get the transformation of the input item stacks */
-    public @Nonnull ItemStack getTransformResult(List<ItemStack> input) {
-        int matches = 0;
-        List comp = null;
-        ItemStack result = ItemStack.EMPTY;
-        for(Map.Entry<List<ItemStack>, ItemStack> entry : recipeMaps.entrySet()) {
-            for(ItemStack rIn : entry.getKey()) {
-                for(ItemStack iIn : input) {
-                    if(ItemStack.isSame(rIn, iIn)) {
-                        matches++;
-                        result = entry.getValue();
-                        comp = entry.getKey();
-                    }
-                }
-            }
+    @Override
+    public ItemStack assemble(IInventory inv) {
+        return this.output.copy();
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
+        return false;
+    }
+
+    @Override
+    public ItemStack getResultItem() {
+        return this.output;
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return id;
+    }
+
+    @Override
+    public IRecipeSerializer<?> getSerializer() {
+        return SERIALIZER;
+    }
+
+    @Override
+    public IRecipeType<?> getType() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "LightningTransformRecipes{" +
+                "input=" + input +
+                ", output=" + output +
+
+                ", id=" + id +
+                '}';
+    }
+    public boolean isValid (ItemStack input) {
+
+        return this.input.test(input);
+    }
+    private static class LCSerializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<LightningTransformRecipes> {
+
+        LCSerializer() {
+
+            // This registry name is what people will specify in their json files.
+            this.setRegistryName(rl("lightning_transform_recipes"));
         }
-        if(matches == input.size() && matches == comp.size()) {
-            return result.copy(); // don't alter this stack!
-        } else {
-            return ItemStack.EMPTY;
+
+        @Override
+        public LightningTransformRecipes fromJson(ResourceLocation recipeId, JsonObject json) {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public LightningTransformRecipes fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+            return null;
+        }
+
+        @Override
+        public void toNetwork(PacketBuffer buffer, LightningTransformRecipes recipe) {
+
         }
     }
 }

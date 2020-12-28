@@ -9,7 +9,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 import org.jetbrains.annotations.Nullable;
-import ru.timeconqueror.timecore.registry.BlockPropsFactory;
+import ru.timeconqueror.timecore.api.registry.util.BlockPropsFactory;
+
 
 public class BlockInfuser extends ContainerBlock {
 

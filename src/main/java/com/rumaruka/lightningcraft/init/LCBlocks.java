@@ -5,11 +5,13 @@ import com.rumaruka.lightningcraft.client.LCItemGroup;
 import com.rumaruka.lightningcraft.common.block.BlockInfuser;
 import com.rumaruka.lightningcraft.common.block.LCBaseBlock;
 import net.minecraftforge.registries.ObjectHolder;
-import ru.timeconqueror.timecore.registry.AutoRegistrable;
-import ru.timeconqueror.timecore.registry.newreg.BlockRegister;
+import ru.timeconqueror.timecore.api.registry.BlockRegister;
+import ru.timeconqueror.timecore.api.registry.util.AutoRegistrable;
+
 
 import static com.rumaruka.lightningcraft.common.block.LCBaseBlock.METAL_PROP;
-import static ru.timeconqueror.timecore.util.Hacks.promise;
+import static ru.timeconqueror.timecore.api.util.Hacks.promise;
+
 
 @ObjectHolder(LightningCraft.MODID)
 public class LCBlocks {
@@ -28,10 +30,10 @@ public class LCBlocks {
 
         @AutoRegistrable.InitMethod
         private static void register() {
-            REGISTER.register("mystic_block",()->new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
-            REGISTER.register("skyfather_block",()->new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
-            REGISTER.register("electricium_block",()->new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
-            REGISTER.register("infuser",()->new BlockInfuser(BlockInfuser.INFUSER.create())).regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
+            REGISTER.register("mystic_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
+            REGISTER.register("skyfather_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
+            REGISTER.register("electricium_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
+            REGISTER.register("infuser", () -> new BlockInfuser(BlockInfuser.INFUSER.create())).regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
 
 
         }
