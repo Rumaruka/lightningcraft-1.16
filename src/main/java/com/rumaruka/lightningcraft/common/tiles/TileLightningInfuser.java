@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import org.jetbrains.annotations.Nullable;
 
-public class TileLightningInfuser extends TileLightningItemHandler.Upgradable{
+public  class TileLightningInfuser extends TileLightningItemHandler.Upgradable{
     public TileLightningInfuser( ) {
         super(LCTiles.INFUSER);
     }

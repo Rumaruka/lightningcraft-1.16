@@ -12,4 +12,10 @@ public class LCMisc {
         }
         return wrapper;
     }
+    public static boolean inArray(Object obj, Object[] array) {
+        for(Object i : array) {
+            if(obj == i) return true;
+        }
+        return false;
+    }
 }

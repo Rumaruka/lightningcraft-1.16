@@ -1,10 +1,15 @@
 package com.rumaruka.lightningcraft;
 
-import com.rumaruka.lightningcraft.api.leenergy.CapabilityLEEnergy;
+import com.rumaruka.lightningcraft.api.leenergy.ILEEnergy;
+import com.rumaruka.lightningcraft.api.leenergy.LEEnergy;
+import com.rumaruka.lightningcraft.api.leenergy.LEEnergyStorage;
+import com.rumaruka.lightningcraft.init.LCEntites;
 import com.rumaruka.lightningcraft.init.LCTypes;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,12 +27,16 @@ public class LightningCraft implements TimeMod {
 
 
         logger.info("LightningCraft add in you modpack");
-//        CapabilityLEEnergy.setupCap();
-//        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(IRecipeSerializer.class, LCTypes::setupRecipe);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
 
+        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(IRecipeSerializer.class, LCTypes::setupRecipe);
+        LCEntites.setup();
     }
 
-
+    public void commonSetup(FMLCommonSetupEvent event) {
+        logger.info("LEEnergy Capability register");
+        CapabilityManager.INSTANCE.register(ILEEnergy.class, new LEEnergyStorage(), ()-> new LEEnergy(1000));
+    }
     public static ResourceLocation rl(String path){
         return new ResourceLocation(LightningCraft.MODID,path);
     }

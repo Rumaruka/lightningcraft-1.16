@@ -33,7 +33,7 @@ public class LCBlocks {
             REGISTER.register("mystic_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
             REGISTER.register("skyfather_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
             REGISTER.register("electricium_block", () -> new LCBaseBlock(METAL_PROP.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
-            REGISTER.register("infuser", () -> new BlockInfuser(BlockInfuser.INFUSER.create())).regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
+            REGISTER.register("infuser", () -> new BlockInfuser(BlockInfuser.INFUSER.create())).genDefaultStateAndModel().regDefaultBlockItem(LCItemGroup.LC_ITEM_GROUP);
 
 
         }

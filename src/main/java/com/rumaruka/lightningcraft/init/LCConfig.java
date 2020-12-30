@@ -4,6 +4,7 @@ import com.rumaruka.lightningcraft.LightningCraft;
 import com.rumaruka.lightningcraft.client.LCItemGroup;
 import com.rumaruka.lightningcraft.common.block.BlockInfuser;
 import com.rumaruka.lightningcraft.common.block.LCBaseBlock;
+import com.rumaruka.lightningcraft.common.config.ConfigurationCustom;
 import com.rumaruka.lightningcraft.common.config.TestCfg;
 import net.minecraftforge.registries.ObjectHolder;
 import ru.timeconqueror.timecore.api.registry.BlockRegister;
@@ -22,7 +23,7 @@ public class LCConfig {
 
         @AutoRegistrable.InitMethod
         private static void register() {
-            REGISTER.register(TestCfg.INSTANCE);
+            REGISTER.register(ConfigurationCustom.MAIN);
         }
     }
 }

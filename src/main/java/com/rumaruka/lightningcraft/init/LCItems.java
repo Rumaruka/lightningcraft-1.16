@@ -1,6 +1,7 @@
 package com.rumaruka.lightningcraft.init;
 
 import com.rumaruka.lightningcraft.LightningCraft;
+import com.rumaruka.lightningcraft.common.item.ItemGolfClub;
 import com.rumaruka.lightningcraft.common.item.LCIngot;
 import net.minecraftforge.registries.ObjectHolder;
 import ru.timeconqueror.timecore.api.registry.ItemRegister;
@@ -18,6 +19,7 @@ public class LCItems {
     public static final LCIngot INGOT_MYSTIC = promise();
     public static final LCIngot INGOT_ELECTRICIUM = promise();
     public static final LCIngot INGOT_SKYFATHER = promise();
+    public static final ItemGolfClub GOLF_CLUB = promise();
 
     private static class Setup {
 
@@ -30,6 +32,7 @@ public class LCItems {
             REGISTER.register("ingot_mystic", LCIngot::new).genDefaultModel(tl("item/ingot_mystic"));
             REGISTER.register("ingot_electricium", LCIngot::new).genDefaultModel(tl("item/ingot_electricium"));
             REGISTER.register("ingot_skyfather", LCIngot::new).genDefaultModel(tl("item/ingot_skyfather"));
+            REGISTER.register("golf_club", ItemGolfClub::new).genDefaultModel(tl("item/golf_club"));
 
         }
     }

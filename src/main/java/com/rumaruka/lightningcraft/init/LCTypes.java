@@ -12,11 +12,11 @@ import static com.rumaruka.lightningcraft.LightningCraft.rl;
 
 public class LCTypes {
 
-//    public static final IRecipeType<LightningTransformRecipes> LIGHTNING_TRANSFORM_RECIPES = new LightningTransformRecipesBlock();
+    public static final IRecipeType<LightningTransformRecipes> LIGHTNING_TRANSFORM_RECIPES = new LightningTransformRecipesBlock();
 
 
-//    public static void setupRecipe(RegistryEvent.Register<IRecipeSerializer<?>> event) {
-//        Registry.register(Registry.RECIPE_TYPE,rl(LIGHTNING_TRANSFORM_RECIPES.toString()),LIGHTNING_TRANSFORM_RECIPES);
-//        event.getRegistry().register(LightningTransformRecipes.SERIALIZER);
-//    }
+    public static void setupRecipe(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+        Registry.register(Registry.RECIPE_TYPE,rl(LIGHTNING_TRANSFORM_RECIPES.toString()),LIGHTNING_TRANSFORM_RECIPES);
+        event.getRegistry().register(LightningTransformRecipes.SERIALIZER);
+    }
 }

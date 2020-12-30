@@ -1,6 +1,5 @@
 package com.rumaruka.lightningcraft.common.tiles;
 
-import com.rumaruka.lightningcraft.api.leenergy.CapabilityLEEnergy;
 import com.rumaruka.lightningcraft.common.tiles.ifaces.ISidedInventoryLC;
 import com.rumaruka.lightningcraft.utils.LCMisc;
 import net.minecraft.block.BlockState;
@@ -115,17 +114,12 @@ public abstract class TileLightningItemHandler extends TileLightningUser impleme
     }
 
     public static abstract class Upgradable extends TileLightningItemHandler {
+
         public Upgradable(TileEntityType<?> tileEntityTypeIn) {
             super(tileEntityTypeIn);
         }
 
-        public boolean hasCapability(Capability<?> capability, Direction facing) {
-            if (capability == CapabilityLEEnergy.LIGHTNING_UPGRADABLE) {
-                return true;
-            } else {
-                return hasCapability(capability, facing);
-            }
-        }
+
 
         @NotNull
         @Override

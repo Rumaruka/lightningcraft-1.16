@@ -1,72 +1,24 @@
 package com.rumaruka.lightningcraft.api.leenergy;
 
-public class LEEnergyStorage implements ILEEnergy{
-    protected int energy;
-    protected int capacity;
-    protected int maxReceive;
-    protected int maxExtract;
+import net.minecraft.nbt.INBT;
+import net.minecraft.nbt.IntNBT;
+import net.minecraft.util.Direction;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.EnergyStorage;
+import org.jetbrains.annotations.Nullable;
 
-    public LEEnergyStorage(int capacity)
-    {
-        this(capacity, capacity, capacity, 0);
-    }
-    public LEEnergyStorage(int capacity, int maxTransfer)
-    {
-        this(capacity, maxTransfer, maxTransfer, 0);
-    }
-
-    public LEEnergyStorage(int capacity, int maxReceive, int maxExtract)
-    {
-        this(capacity, maxReceive, maxExtract, 0);
-    }
-
-    public LEEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy)
-    {
-        this.capacity = capacity;
-        this.maxReceive = maxReceive;
-        this.maxExtract = maxExtract;
-        this.energy = Math.max(0 , Math.min(capacity, energy));
+public class LEEnergyStorage implements Capability.IStorage<ILEEnergy> {
+    @Nullable
+    @Override
+    public INBT writeNBT(Capability<ILEEnergy> capability, ILEEnergy instance, Direction side) {
+        return IntNBT.valueOf(instance.getEnergyStored());
     }
 
     @Override
-    public int receiveEnergy(int maxReceive, boolean fake) {
-        if (!canReceive())
-            return 0;
+    public void readNBT(Capability<ILEEnergy> capability, ILEEnergy instance, Direction side, INBT nbt) {
+        if (!(instance instanceof LEEnergy))
+            throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
+        ((LEEnergy)instance).energy = ((IntNBT)nbt).getAsInt();
 
-        int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
-        if (!fake)
-            energy += energyReceived;
-        return energyReceived;
-    }
-
-    @Override
-    public int extractEnergy(int maxExtract, boolean fake) {
-        if (!canExtract())
-            return 0;
-
-        int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-        if (!fake)
-            energy -= energyExtracted;
-        return energyExtracted;
-    }
-
-    @Override
-    public int getEnergyStored() {
-        return energy;
-    }
-
-    @Override
-    public int getMaxEnergyStored() {
-        return capacity;
-    }
-
-    @Override
-    public boolean canExtract() {
-        return this.maxExtract > 0;
-    }
-
-    @Override
-    public boolean canReceive() {
-        return this.maxReceive > 0;
     }
 }
